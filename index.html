@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELLBOX TALCA | Centro de Entrenamiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e50914;
+            --primary-hover: #b80710;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1f1f1f;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #262626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-text, .nav-links a, .btn {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-main {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 0.9;
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+
+        .logo-sub {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            letter-spacing: 4px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--text-light);
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--text-light);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)), 
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin-top: 60px;
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+            margin-bottom: 10px;
+        }
+
+        .hero-tagline {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-footer-info {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .info-block h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        /* Section Commons */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Equipamiento */
+        .equipement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .equip-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .equip-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .equip-card h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .equip-card ul {
+            list-style: none;
+        }
+
+        .equip-card li {
+            color: var(--text-muted);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .equip-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Servicios / Clases */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Hellbox Kids */
+        .kids-section {
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, rgba(10, 10, 10, 1) 100%);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            margin: 0 8% 90px 8%;
+            padding: 50px;
+        }
+
+        .kids-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .kids-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .kids-list li {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Comunidad */
+        .community {
+            background-color: var(--bg-card);
+            text-align: center;
+        }
+
+        .community-box {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .community-box h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .community-box p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 40px 8% 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-tagline { font-size: 1.3rem; }
+            .kids-container { grid-template-columns: 1fr; }
+            nav { display: none; }
+            .hero-footer-info { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="#" class="logo">
+            <span class="logo-main">HELLBOX</span>
+            <span class="logo-sub">TALCA</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#equipamiento">Equipamiento</a></li>
+                <li><a href="#clases">Clases</a></li>
+                <li><a href="#kids">Kids</a></li>
+                <li><a href="#comunidad">Comunidad</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <a href="#contacto" class="btn btn-outline">Mi Cuenta</a>
+            <a href="#contacto" class="btn btn-primary">Contáctanos</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="hero-subtitle">FUERZA | DISCIPLINA | RESULTADOS</p>
+            <h1 class="hero-title">HELLBOX</h1>
+            <p class="hero-tagline">¡ÚNETE AL INFIERNO DEL ENTRENAMIENTO!</p>
+            <div class="hero-btns">
+                <a href="#clases" class="btn btn-primary">EMPIEZA HOY</a>
+                <a href="#equipamiento" class="btn btn-outline">NUESTROS PLANES</a>
+            </div>
+            
+            <div class="hero-footer-info">
+                <div class="info-block">
+                    <h4>BIENVENIDO</h4>
+                    <p>Espacio diseñado para romper tus límites con la filosofía de entrenamiento más exigente.</p>
+                </div>
+                <div class="info-block">
+                    <h4>HORARIOS</h4>
+                    <p>Lun - Vie: 07:00 am - 22:00 pm<br>Sábados: 09:00 am - 14:00 pm</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipamiento Section -->
+    <section id="equipamiento">
+        <div class="section-header">
+            <h2 class="section-title">NUESTRO EQUIPAMIENTO</h2>
+            <p class="section-desc">Instalaciones de primer nivel categorizadas para optimizar cada fase de tu rutina.</p>
+        </div>
+        <div class="equipement-grid">
+            <div class="equip-card">
+                <h3>PESO LIBRE</h3>
+                <ul>
+                    <li>Barras Olímpicas</li>
+                    <li>Discos Bumper</li>
+                    <li>Mancuernas de alto gramaje</li>
+                    <li>Bancos Ajustables</li>
+                    <li>Racks Profesionales</li>
+                </ul>
+            </div>
+            <div class="equip-card">
+                <h3>MUSCULACIÓN</h3>
+                <ul>
+                    <li>Máquinas Especializadas</li>
+                    <li>Sistemas de Poleas</li>
+                    <li>Prensa 45°</li>
+                    <li>Extensiones & Femoral</li>
+                </ul>
+            </div>
+            <div class="equip-card">
+                <h3>CARDIO</h3>
+                <ul>
+                    <li>Caminadoras de alto rendimiento</li>
+                    <li>Bicicletas de Spining</li>
+                    <li>Elípticas Profesionales</li>
+                </ul>
+            </div>
+            <div class="equip-card">
+                <h3>FUNCIONAL</h3>
+                <ul>
+                    <li>Espacio Abierto Adaptado</li>
+                    <li>Accesorios & Kettlebells</li>
+                    <li>Equipamiento Dinámico</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clases / Servicios Section -->
+    <section id="clases" style="background: #0d0d0d;">
+        <div class="section-header">
+            <h2 class="section-title">ENTRENA A TU MANERA</h2>
+            <p class="section-desc">Selecciona la disciplina que mejor se adapte a tus metas.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>MUSCULACIÓN</h3>
+                    <p>Construye fuerza y masa muscular con programas focalizados y asesoría constante.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>FUNCIONAL</h3>
+                    <p>Mejora tu fuerza, resistencia, movilidad y condición física general en sesiones dinámicas.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>CROSSFIT</h3>
+                    <p>Entrenamientos de alta intensidad diseñados para desafiar tus límites dentro de la comunidad.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>PERSONAL TRAINING</h3>
+                    <p>Acompañamiento personalizado 1 a 1 adaptado exclusivamente a tus objetivos particulares.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hellbox Kids Section -->
+    <div class="kids-section" id="kids">
+        <div class="kids-container">
+            <div>
+                <h2 style="font-size: 2.5rem; color: #fff;">HELLBOX <span style="color: var(--primary);">KIDS</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 5px;">Movimiento, juego y desarrollo desde pequeños.</p>
+                <ul class="kids-list">
+                    <li>🏃 Desarrollo de habilidades motoras</li>
+                    <li>🤸 Coordinación y equilibrio</li>
+                    <li>🧠 Estimulación mediante el movimiento</li>
+                    <li>💪 Fuerza y control corporal</li>
+                    <li>👶 Actividades adaptadas según la edad</li>
+                    <li>👥 Espacio seguro y guiado por profesionales</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <a href="#contacto" class="btn btn-primary" style="padding: 15px 30px;">CONSULTAR HORARIOS KIDS</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comunidad Section -->
+    <section class="community" id="comunidad">
+        <div class="community-box">
+            <h2>NO ENTRENAS SOLO</h2>
+            <p>Hellbox es una comunidad formada por personas con distintos objetivos, pero con algo en común: querer ser mejores que ayer.</p>
+            <div class="tags-grid">
+                <span class="tag">📸 Cumpleaños</span>
+                <span class="tag">🏆 Competencias</span>
+                <span class="tag">🎉 Eventos</span>
+                <span class="tag">🏋️ Entrenamientos Grupales</span>
+                <span class="tag">🥇 Campeonatos</span>
+                <span class="tag">🤝 Celebraciones</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="logo">
+                <span class="logo-main">HELLBOX</span>
+                <span class="logo-sub">TALCA</span>
+            </div>
+            <div>
+                <p>Ubicación: Talca, Chile</p>
+                <p>Contacto: contacto@hellboxtalca.cl</p>
+            </div>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HELLBOX TALCA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -3,637 +3,662 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HELLBOX TALCA | Centro de Entrenamiento</title>
+    <title>HELLBOX TALCA | Fuerza, Disciplina y Resultados en el Infierno del Entrenamiento</title>
+    <!-- Incluimos fuentes de Google para un look profesional e industrial -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* --- ESTILOS GENERALES Y VARIABLES --- */
         :root {
-            --primary-red: #d32f2f;
-            --btn-red: #cc0000;
-            --dark-bg: #0d0d0d;
-            --card-bg: #161616;
-            --text-white: #ffffff;
-            --text-gray: #a5a5a5;
-            --border-dark: #222222;
+            --primary: #e50914; /* Rojo vibrante para acentos y botones */
+            --primary-hover: #ff1f1f; /* Rojo más brillante para hover */
+            --bg-dark: #0a0a0a; /* Fondo ultra oscuro */
+            --bg-card: #141414; /* Fondo de tarjetas */
+            --text-light: #ffffff; /* Texto blanco principal */
+            --text-muted: #a0a0a0; /* Texto gris para subtítulos */
+            --border-color: #262626; /* Color de bordes sutiles */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', sans-serif; /* Fuente base */
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-white);
-            overflow-x: hidden;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita scroll horizontal */
         }
 
-        h1, h2, h3, .nav-links a, .btn, .logo-title {
-            font-family: 'Oswald', sans-serif;
+        h1, h2, h3, .nav-links a, .btn {
+            font-family: 'Oswald', sans-serif; /* Fuente para títulos y elementos de acción */
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* --- HEADER & NAV --- */
+        /* --- EFECTO DINÁMICO: Scroll Revelado Sutil --- */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        [data-reveal].active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- BARRA DE NAVEGACIÓN (NAVBAR) --- */
         header {
-            position: absolute;
+            position: fixed; /* Mantiene la barra fija arriba */
             top: 0;
             left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 50px;
-            z-index: 100;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+            padding: 15px 8%;
+            background: rgba(10, 10, 10, 0.9); /* Fondo semi-transparente */
+            backdrop-filter: blur(10px); /* Efecto de desenfoque detrás de la barra */
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .nav-left, .nav-right {
+        .logo {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 15px;
+            text-decoration: none;
         }
 
-        .nav-left a, .nav-right a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
+        /* Imagen del logo integrada */
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Texto del logo dinámico */
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
             transition: color 0.3s;
         }
 
-        .nav-left a:hover, .nav-right a:hover {
-            color: var(--primary-red);
-        }
-
-        .nav-left a.active {
-            color: var(--primary-red);
-            border-bottom: 2px solid var(--primary-red);
-            padding-bottom: 2px;
-        }
-
-        /* Logo Central */
-        .logo-container {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-        }
-
-        .logo-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 0.9;
-            color: #ffffff;
-            text-shadow: 0 0 12px rgba(211, 47, 47, 0.8), 0 0 2px #fff;
-            letter-spacing: 2px;
-            border: 2px solid var(--primary-red);
-            padding: 2px 12px;
-            display: inline-block;
-        }
-
         .logo-sub {
-            display: block;
-            font-size: 0.75rem;
-            letter-spacing: 5px;
-            color: var(--text-white);
-            margin-top: 2px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
         }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 700px;
-            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), 
-                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover no-repeat;
+        /* Efecto hover en el logo */
+        .logo:hover .logo-main {
+            color: var(--primary);
+        }
+
+        nav ul {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
+            list-style: none;
+            gap: 25px;
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            color: var(--text-white);
-            margin-bottom: 10px;
-            font-weight: 500;
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
-        .hero-title-main {
-            font-size: 6.5rem;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 0.9;
-            text-shadow: 0 0 20px rgba(211, 47, 47, 0.9), 0 0 5px #ffffff;
-            letter-spacing: 3px;
-            margin-bottom: 5px;
+        nav a:hover {
+            color: var(--primary);
         }
 
-        .hero-title-sub {
-            font-size: 2.2rem;
-            letter-spacing: 8px;
-            color: var(--text-white);
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .hero-tagline {
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            margin-bottom: 35px;
-            font-weight: 700;
-        }
-
-        /* Buttons */
-        .hero-actions {
+        .nav-actions {
             display: flex;
-            gap: 20px;
-            margin-bottom: 80px;
+            gap: 15px;
         }
 
         .btn {
-            padding: 12px 35px;
-            border-radius: 25px;
-            font-size: 0.95rem;
-            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 4px;
             text-decoration: none;
-            cursor: pointer;
+            font-weight: 700;
+            display: inline-block;
             transition: all 0.3s ease;
-            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
         }
 
-        .btn-fill {
-            background-color: var(--btn-red);
-            color: var(--text-white);
-            border: 2px solid var(--btn-red);
-            box-shadow: 0 0 15px rgba(204, 0, 0, 0.5);
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--text-light);
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4); /* Resplandor sutil */
         }
 
-        .btn-fill:hover {
-            background-color: #a00000;
-            border-color: #a00000;
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.6); /* Resplandor más fuerte en hover */
         }
 
         .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--text-light);
             background: transparent;
-            color: var(--text-white);
-            border: 2px solid var(--btn-red);
         }
 
         .btn-outline:hover {
-            background-color: rgba(204, 0, 0, 0.2);
+            background-color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        /* Hero Overlay Info Overlay (Bottom Left & Right) */
-        .hero-bottom-info {
-            position: absolute;
-            bottom: 30px;
-            left: 50px;
-            right: 50px;
+        /* --- SECCIÓN HERO (PORTADA PRINCIPAL) --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover no-repeat; /* Imagen de fondo de alta calidad */
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin-top: 60px; /* Espacio para la navbar */
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        /* Efecto de resplandor neón en el título principal */
+        .hero-title span {
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+        }
+
+        .hero-tagline {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        /* Info de horarios y bienvenida al pie del Hero */
+        .hero-footer-info {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: left;
-            font-size: 0.85rem;
-        }
-
-        .info-box {
-            max-width: 320px;
-        }
-
-        .info-box h4 {
-            color: var(--primary-red);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
             font-size: 0.9rem;
-            letter-spacing: 1px;
+        }
+
+        .info-block h4 {
+            color: var(--primary);
+            font-size: 1rem;
             margin-bottom: 5px;
         }
 
-        .info-box p {
-            color: var(--text-gray);
-            line-height: 1.4;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 24px;
-            height: 40px;
-            border: 2px solid var(--text-gray);
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            padding-top: 6px;
-        }
-
-        .scroll-indicator::before {
-            content: '';
-            width: 4px;
-            height: 8px;
-            background-color: var(--primary-red);
-            border-radius: 2px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-
-        /* --- DRIBBBLE STYLE OVERLAPPING CARDS --- */
-        .overlapping-cards {
-            position: relative;
-            margin-top: -50px;
-            z-index: 10;
-            padding: 0 50px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .card-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-dark);
-            padding: 20px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .card-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-red);
-        }
-
-        .card-item.highlight {
-            background: var(--btn-red);
-        }
-
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .card-text h4 {
-            font-size: 1rem;
-            color: var(--text-white);
-        }
-
-        .card-text p {
-            font-size: 0.75rem;
-            color: var(--text-gray);
-        }
-
-        .card-item.highlight .card-text p {
-            color: #eee;
-        }
-
-        /* --- CONTENT SECTIONS --- */
+        /* --- SECCIONES COMUNES --- */
         section {
-            padding: 80px 50px;
+            padding: 90px 8%;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--text-white);
-            letter-spacing: 2px;
-        }
-
-        .section-header p {
-            color: var(--primary-red);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            font-weight: bold;
-        }
-
-        /* Grid Layouts */
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .content-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-dark);
-            padding: 30px;
-            border-radius: 6px;
-        }
-
-        .content-card h3 {
-            color: var(--primary-red);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-dark);
-            padding-bottom: 10px;
-        }
-
-        .content-card ul {
-            list-style: none;
-        }
-
-        .content-card li {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        /* Kids Banner */
-        .kids-box {
-            background: linear-gradient(90deg, #161616 0%, #2a0808 100%);
-            border: 1px solid var(--primary-red);
-            padding: 40px;
-            border-radius: 8px;
-        }
-
-        .kids-box h3 {
-            font-size: 2rem;
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--text-light);
             margin-bottom: 10px;
         }
 
-        .kids-box ul {
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- SECCIÓN EQUIPAMIENTO (TARJETAS DINÁMICAS) --- */
+        .equipement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .equip-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Efecto hover dinámico en tarjetas */
+        .equip-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .equip-card h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .equip-card ul {
             list-style: none;
-            margin-top: 15px;
         }
 
-        .kids-box li {
-            margin-bottom: 8px;
-            color: var(--text-gray);
+        .equip-card li {
+            color: var(--text-muted);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Community Tags */
-        .tags-container {
+        .equip-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* --- SECCIÓN SERVICIOS (TARJETAS DE DISCIPLINA) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Imagen de fondo en cada tarjeta de servicio */
+        .service-image {
+            height: 180px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- SECCIÓN COMUNIDAD (GALERÍA INTERACTIVA) --- */
+        .community {
+            background-color: var(--bg-card);
+        }
+
+        /* Galería estilo "Masonry" para dinamismo visual */
+        .community-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            grid-auto-rows: 200px; /* Altura base para las filas */
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        /* Hace que ciertas imágenes ocupen más espacio para un look dinámico */
+        .gallery-item.v-stretch { grid-row: span 2; }
+        .gallery-item.h-stretch { grid-column: span 2; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        /* Efecto zoom suave en hover */
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Superposición de texto en hover */
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(229, 9, 20, 0.8);
+            color: var(--text-light);
             display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+            align-items: center;
             justify-content: center;
-            margin-top: 25px;
-        }
-
-        .tag-item {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-dark);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-white);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #050505;
-            padding: 30px 50px;
-            border-top: 1px solid var(--border-dark);
             text-align: center;
-            color: var(--text-gray);
-            font-size: 0.8rem;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        @media (max-width: 900px) {
-            header { padding: 20px; flex-direction: column; gap: 15px; }
-            .logo-container { position: relative; left: 0; transform: none; }
-            .overlapping-cards { grid-template-columns: 1fr 1fr; margin-top: 0; padding: 20px; }
-            .hero-title-main { font-size: 4rem; }
-            .hero-bottom-info { display: none; }
-            .grid-2 { grid-template-columns: 1fr; }
-            section { padding: 50px 20px; }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        /* --- PIE DE PÁGINA (FOOTER) --- */
+        footer {
+            background: #050505; /* Footer ultra oscuro */
+            padding: 60px 8% 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap; /* Adaptabilidad */
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+
+        /* --- MEDIA QUERIES (ADAPTABILIDAD MÓVIL) --- */
+        @media (max-width: 768px) {
+            header { padding: 10px 4%; }
+            .logo img { height: 40px; }
+            .logo-main { font-size: 1.5rem; }
+            .hero-title { font-size: 3.5rem; }
+            .hero-tagline { font-size: 1.3rem; }
+            nav ul { display: none; } /* Ocultamos nav para móvil por ahora */
+            .hero-footer-info { flex-direction: column; gap: 15px; }
+            .community-gallery { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.h-stretch { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- --- BARRA DE NAVEGACIÓN --- -->
     <header>
-        <div class="nav-left">
-            <a href="#home" class="active">Home</a>
-            <a href="#planes">Planes</a>
-            <a href="#horarios">Horarios</a>
-            <a href="#galeria">Galería</a>
-        </div>
-
-        <div class="logo-container">
-            <div class="logo-title">HELLBOX</div>
-            <span class="logo-sub">TALCA</span>
-        </div>
-
-        <div class="nav-right">
-            <a href="#cuenta">Mi Cuenta</a>
-            <a href="#contacto">Contáctanos</a>
+        <a href="#" class="logo">
+            <!-- REEMPLAZA 'logo.png' CON LA RUTA A TU ARCHIVO DE LOGO -->
+            <img src="logo.png" alt="HELLBOX TALCA Logo">
+            <div class="logo-text-wrapper">
+                <span class="logo-main">HELLBOX</span>
+                <span class="logo-sub">TALCA</span>
+            </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#equipamiento">Equipamiento</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#comunidad">Comunidad</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <a href="#contacto" class="btn btn-primary">CONTACTANOS</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- --- SECCIÓN HERO PRINCIPAL --- -->
     <section class="hero" id="home">
-        <p class="hero-subtitle">FUERZA | DISCIPLINA | RESULTADOS</p>
-        <h1 class="hero-title-main">HELLBOX</h1>
-        <div class="hero-title-sub">TALCA</div>
-        <p class="hero-tagline">¡ÚNETE AL INFIERNO DEL ENTRENAMIENTO!</p>
-
-        <div class="hero-actions">
-            <a href="#contacto" class="btn btn-fill">EMPIEZA HOY</a>
-            <a href="#planes" class="btn btn-outline">NUESTROS PLANES</a>
-        </div>
-
-        <div class="hero-bottom-info">
-            <div class="info-box">
-                <h4>BIENVENIDO</h4>
-                <p>Hellbox es un espacio preparado para desafiar tus límites con equipamiento de primer nivel y ambiente enfocado en resultados.</p>
+        <div class="hero-content">
+            <p class="hero-subtitle">FUERZA | DISCIPLINA | RESULTADOS</p>
+            <h1 class="hero-title">HELLBOX <span>TALCA</span></h1>
+            <p class="hero-tagline">¡ÚNETE AL INFIERNO DEL ENTRENAMIENTO!</p>
+            <div class="hero-btns">
+                <a href="#servicios" class="btn btn-primary">EMPIEZA HOY</a>
+                <a href="#equipamiento" class="btn btn-outline">CONOCE MÁS</a>
             </div>
-
-            <div class="scroll-indicator"></div>
-
-            <div class="info-box" style="text-align: right;">
-                <h4>HORARIOS</h4>
-                <p>Horas: 09:00 am - 17:00 am<br>7:00 am - 17:00 am</p>
-                <div class="social-icons" style="justify-content: flex-end; margin-top: 5px;">
-                    <a href="#">📷</a>
-                    <a href="#">📘</a>
+            
+            <div class="hero-footer-info">
+                <div class="info-block">
+                    <h4>BIENVENIDO</h4>
+                    <p>Espacio diseñado para romper tus límites con la filosofía de entrenamiento más exigente.</p>
+                </div>
+                <div class="info-block">
+                    <h4>HORARIOS</h4>
+                    <p>Lun - Vie: 07:00 am - 22:00 pm<br>Sábados: 09:00 am - 14:00 pm</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Dribbble Style Overlapping Quick Cards -->
-    <div class="overlapping-cards">
-        <div class="card-item">
-            <div class="card-icon">🏋️</div>
-            <div class="card-text">
-                <h4>Servicios Dedicados</h4>
-                <p>Equipamiento top</p>
-            </div>
-        </div>
-        <div class="card-item">
-            <div class="card-icon">👥</div>
-            <div class="card-text">
-                <h4>Instructores</h4>
-                <p>Guía profesional</p>
-            </div>
-        </div>
-        <div class="card-item highlight">
-            <div class="card-icon">🔥</div>
-            <div class="card-text">
-                <h4>Planes Especiales</h4>
-                <p>A tu medida</p>
-            </div>
-        </div>
-        <div class="card-item">
-            <div class="card-icon">🏆</div>
-            <div class="card-text">
-                <h4>Comunidad</h4>
-                <p>Entrena en grupo</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Equipamiento Section -->
-    <section id="equipamiento">
+    <!-- --- SECCIÓN EQUIPAMIENTO --- -->
+    <section id="equipamiento" data-reveal>
         <div class="section-header">
-            <p>EQUIPAMIENTO</p>
-            <h2>MÁQUINAS Y ZONAS DE ENTRENAMIENTO</h2>
+            <h2 class="section-title">NUESTRO <span>EQUIPAMIENTO</span></h2>
+            <p class="section-desc">Instalaciones de primer nivel categorizadas para optimizar cada fase de tu rutina.</p>
         </div>
-        <div class="grid-4">
-            <div class="content-card">
+        <div class="equipement-grid">
+            <div class="equip-card">
                 <h3>PESO LIBRE</h3>
                 <ul>
-                    <li>• Barras</li>
-                    <li>• Discos</li>
-                    <li>• Mancuernas</li>
-                    <li>• Bancos</li>
-                    <li>• Racks</li>
+                    <li>Barras Olímpicas</li>
+                    <li>Discos Bumper</li>
+                    <li>Mancuernas</li>
+                    <li>Bancos y Racks</li>
                 </ul>
             </div>
-            <div class="content-card">
+            <div class="equip-card">
                 <h3>MUSCULACIÓN</h3>
                 <ul>
-                    <li>• Máquinas especializadas</li>
-                    <li>• Poleas</li>
-                    <li>• Prensa</li>
-                    <li>• Extensiones</li>
+                    <li>Máquinas Especializadas</li>
+                    <li>Poleas</li>
+                    <li>Prensa y Extensiones</li>
                 </ul>
             </div>
-            <div class="content-card">
+            <div class="equip-card">
                 <h3>CARDIO</h3>
                 <ul>
-                    <li>• Caminadoras</li>
-                    <li>• Bicicletas</li>
-                    <li>• Elípticas</li>
+                    <li>Caminadoras</li>
+                    <li>Bicicletas Spining</li>
+                    <li>Elípticas</li>
                 </ul>
             </div>
-            <div class="content-card">
+            <div class="equip-card">
                 <h3>FUNCIONAL</h3>
                 <ul>
-                    <li>• Espacio funcional</li>
-                    <li>• Accesorios</li>
-                    <li>• Entrenamiento dinámico</li>
+                    <li>Espacio Funcional</li>
+                    <li>Accesorios</li>
+                    <li>Entrenamiento Dinámico</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Clases / Servicios -->
-    <section id="clases" style="background-color: #111;">
+    <!-- --- SECCIÓN SERVICIOS --- -->
+    <section id="servicios" style="background-color: #0d0d0d;" data-reveal>
         <div class="section-header">
-            <p>CLASES / SERVICIOS</p>
-            <h2>ENTRENA A TU MANERA</h2>
+            <h2 class="section-title">ENTRENA A TU <span>MANERA</span></h2>
+            <p class="section-desc">Selecciona la disciplina que mejor se adapte a tus metas.</p>
         </div>
-        <div class="grid-4">
-            <div class="content-card">
-                <h3>MUSCULACIÓN</h3>
-                <p style="color: var(--text-gray); font-size: 0.9rem;">Construye fuerza y masa muscular.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <!-- Imagenes de ejemplo, reemplázalas por las tuyas -->
+                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600');"></div>
+                <div class="service-content">
+                    <h3>MUSCULACIÓN</h3>
+                    <p>Construye fuerza y masa muscular con programas focalizados y asesoría constante.</p>
+                </div>
             </div>
-            <div class="content-card">
-                <h3>FUNCIONAL</h3>
-                <p style="color: var(--text-gray); font-size: 0.9rem;">Mejora fuerza, resistencia, movilidad y condición física.</p>
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600');"></div>
+                <div class="service-content">
+                    <h3>FUNCIONAL</h3>
+                    <p>Mejora tu fuerza, resistencia, movilidad y condición física general en sesiones dinámicas.</p>
+                </div>
             </div>
-            <div class="content-card">
-                <h3>CROSSFIT</h3>
-                <p style="color: var(--text-gray); font-size: 0.9rem;">Entrenamientos de alta intensidad y comunidad.</p>
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600');"></div>
+                <div class="service-content">
+                    <h3>CROSSFIT</h3>
+                    <p>Entrenamientos de alta intensidad diseñados para desafiar tus límites dentro de la comunidad.</p>
+                </div>
             </div>
-            <div class="content-card">
-                <h3>PERSONAL TRAINING</h3>
-                <p style="color: var(--text-gray); font-size: 0.9rem;">Entrenamiento personalizado orientado a tus objetivos.</p>
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef03a726ec?q=80&w=600');"></div>
+                <div class="service-content">
+                    <h3>PERSONAL TRAINING</h3>
+                    <p>Acompañamiento personalizado 1 a 1 adaptado exclusivamente a tus objetivos particulares.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Hellbox Kids Section -->
-    <section id="kids">
-        <div class="kids-box grid-2">
+    <!-- --- SECCIÓN COMUNIDAD --- -->
+    <section class="community" id="comunidad" data-reveal>
+        <div class="section-header">
+            <h2 class="section-title">NO ENTRENAS <span>SOLO</span></h2>
+            <p class="section-desc">Hellbox es una comunidad formada por personas con distintos objetivos, pero con algo en común: querer ser mejores que ayer.</p>
+        </div>
+        
+        <div class="community-gallery">
+            <div class="gallery-item h-stretch">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 1">
+                <div class="gallery-overlay"><h4>Entrenamientos Grupales</h4></div>
+            </div>
+            <div class="gallery-item v-stretch">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 2">
+                <div class="gallery-overlay"><h4>Cumpleaños y Celebraciones</h4></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 3">
+                <div class="gallery-overlay"><h4>Competencias Inter-Box</h4></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 4">
+                <div class="gallery-overlay"><h4>Eventos Especiales</h4></div>
+            </div>
+            <div class="gallery-item h-stretch">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 5">
+                <div class="gallery-overlay"><h4>Compañerismo</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- PIE DE PÁGINA --- -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="HELLBOX TALCA Logo">
+                <div class="logo-text-wrapper">
+                    <span class="logo-main">HELLBOX</span>
+                    <span class="logo-sub">TALCA</span>
+                </div>
+            </a>
             <div>
-                <h3>HELLBOX <span style="color: var(--primary-red);">KIDS</span></h3>
-                <p style="color: var(--text-white); font-weight: bold;">Movimiento, juego y desarrollo desde pequeños.</p>
-                <ul>
-                    <li>🏃 Desarrollo de habilidades motoras</li>
-                    <li>🤸 Coordinación y equilibrio</li>
-                    <li>🧠 Estimulación mediante el movimiento</li>
-                    <li>💪 Fuerza y control corporal</li>
-                    <li>👶 Actividades adaptadas según edad</li>
-                    <li>👥 Espacio seguro y guiado</li>
-                </ul>
+                <p>Ubicación: Calle Ejemplo #123, Talca, Chile.</p>
+                <p>Contacto: contacto@hellboxtalca.cl | +56 9 1234 5678</p>
             </div>
-            <div style="text-align: center;">
-                <a href="#contacto" class="btn btn-fill">MÁS INFORMACIÓN KIDS</a>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
             </div>
         </div>
-    </section>
-
-    <!-- Comunidad Section -->
-    <section id="comunidad" style="text-align: center; background-color: #111;">
-        <div class="section-header">
-            <p>PERSONAS + IDENTIDAD + COMUNIDAD</p>
-            <h2>NO ENTRENAS SOLO</h2>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HELLBOX TALCA. Todos los derechos reservados.</p>
         </div>
-        <p style="max-width: 600px; margin: 0 auto; color: var(--text-gray);">
-            Hellbox es una comunidad formada por personas con distintos objetivos, pero con algo en común: querer ser mejores que ayer.
-        </p>
-        <div class="tags-container">
-            <span class="tag-item">Cumpleaños</span>
-            <span class="tag-item">Competencias</span>
-            <span class="tag-item">Eventos</span>
-            <span class="tag-item">Entrenamientos grupales</span>
-            <span class="tag-item">Gente entrenando</span>
-            <span class="tag-item">Campeonatos</span>
-            <span class="tag-item">Celebraciones</span>
-            <span class="tag-item">Actividades</span>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 HELLBOX TALCA. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- --- JAVASCRIPT DINÁMICO --- -->
+    <script>
+        // --- EFECTO DE REVELADO AL HACER SCROLL ---
+        const revealElements = document.querySelectorAll('[data-reveal]');
+
+        const reveal = function () {
+            for (let i = 0, len = revealElements.length; i < len; i++) {
+                if (revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.15) {
+                    revealElements[i].classList.add('active');
+                } else {
+                    revealElements[i].classList.remove('active');
+                }
+            }
+        }
+
+        // Ejecutar al cargar la página y al hacer scroll
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+    </script>
 </body>
 </html>

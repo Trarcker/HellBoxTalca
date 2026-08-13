@@ -176,33 +176,34 @@ nav a:hover {
     transition: 0.3s;
 }
 
-/* --- HERO --- */
+/* --- HERO (CON IMAGEN DEL ATLETA AL FONDO) --- */
 .hero {
     position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 120px 20px 60px;
-    background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), 
-                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover no-repeat;
+    padding: 120px 6% 60px;
+    /* Imagen de atleta en tonos oscuros a la derecha con degradado para integrarse al fondo */
+    background: 
+        linear-gradient(to right, rgba(10, 10, 10, 0.95) 30%, rgba(10, 10, 10, 0.4) 70%, rgba(10, 10, 10, 0.8) 100%),
+        url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1920') right center / cover no-repeat;
 }
 
 .hero-content {
-    max-width: 850px;
-    width: 100%;
+    max-width: 650px;
+    text-align: left;
 }
 
 .hero-subtitle {
-    color: var(--text-muted);
-    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    color: var(--primary);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    font-weight: 700;
     letter-spacing: 3px;
     margin-bottom: 10px;
 }
 
 .hero-title {
-    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-size: clamp(3rem, 7vw, 5.2rem);
     font-weight: 700;
     line-height: 1.05;
     color: var(--text-light);
@@ -211,39 +212,38 @@ nav a:hover {
 
 .hero-title span {
     color: var(--primary);
-    text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+    text-shadow: 0 0 25px rgba(229, 9, 20, 0.6);
 }
 
 .hero-tagline {
-    font-size: clamp(1.1rem, 4vw, 1.8rem);
-    font-weight: 700;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--text-muted);
+    font-weight: 400;
     margin-bottom: 30px;
+    max-width: 500px;
 }
 
 .hero-btns {
     display: flex;
     gap: 15px;
-    justify-content: center;
-    margin-bottom: 40px;
+    justify-content: flex-start;
+    margin-bottom: 50px;
     flex-wrap: wrap;
 }
 
 .hero-footer-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: left;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 20px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .info-block h4 {
     color: var(--primary);
-    font-size: 1rem;
-    margin-bottom: 5px;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
 }
 
 /* --- SECCIONES GENERALES --- */
@@ -531,6 +531,33 @@ footer {
 
     .nav-actions {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        background: 
+            linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)),
+            url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1920') center / cover no-repeat;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-tagline {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .hero-footer-info {
+        text-align: center;
     }
 }
 

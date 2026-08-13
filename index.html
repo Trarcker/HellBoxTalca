@@ -166,28 +166,88 @@
         </div>
     </section>
 
-    <!-- HELLBOX KIDS -->
-    <div class="kids-section-wrapper" data-reveal>
-        <div class="kids-section" id="kids">
+    <!-- SECCIONAL HELLBOX KIDS INTERACTIVA -->
+    <section class="kids-section-wrapper" id="kids">
+        <div class="kids-section" data-reveal>
             <div class="kids-container">
-                <div>
+                <!-- Columna Izquierda: Información -->
+                <div class="kids-info">
+                    <span class="badge-kids">Programa Infantil</span>
                     <h2 class="kids-title">HELLBOX <span>KIDS</span></h2>
-                    <p class="kids-subtitle">Movimiento, juego y desarrollo desde pequeños.</p>
-                    <ul class="kids-list">
-                        <li>🏃 Desarrollo de habilidades motoras</li>
-                        <li>🤸 Coordinación y equilibrio</li>
-                        <li>🧠 Estimulación mediante el movimiento</li>
-                        <li>💪 Fuerza y control corporal</li>
-                        <li>👶 Actividades adaptadas según la edad</li>
-                        <li>👥 Espacio seguro y guiado</li>
+                    <p class="kids-subtitle">Movimiento, juego y desarrollo integral desde pequeños.</p>
+
+                    <ul class="kids-features">
+                        <li><span class="kids-icon">🏃</span> Desarrollo de habilidades motoras</li>
+                        <li><span class="kids-icon">🤸</span> Coordinación, agilidad y equilibrio</li>
+                        <li><span class="kids-icon">🧠</span> Estimulación cognitiva mediante el movimiento</li>
+                        <li><span class="kids-icon">💪</span> Fuerza funcional y control corporal</li>
+                        <li><span class="kids-icon">🐣</span> Actividades adaptadas por rango de edad</li>
+                        <li><span class="kids-icon">👥</span> Ambiente 100% seguro y supervisado</li>
                     </ul>
                 </div>
-                <div class="kids-action">
-                    <a href="#contacto" class="btn btn-primary">HORARIOS KIDS</a>
+
+                <!-- Columna Derecha: Tarjeta Interactiva de Horarios -->
+                <div class="kids-interactive-card">
+                    <div class="schedule-header">
+                        <h3>Horarios & Clases</h3>
+                        <!-- Selector de categorías de edad -->
+                        <div class="age-selector">
+                            <button class="age-btn active" onclick="switchKidsSchedule('mini', this)">
+                                4 - 8 Años <span>Mini Warriors</span>
+                            </button>
+                            <button class="age-btn" onclick="switchKidsSchedule('junior', this)">
+                                9 - 14 Años <span>Junior Fitness</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de horarios (Mini Warriors) -->
+                    <div id="schedule-mini" class="schedule-content active">
+                        <div class="schedule-row">
+                            <span class="day">Lunes y Miércoles</span>
+                            <span class="time">16:00 - 17:00 HRS</span>
+                            <span class="status">Cupos Disponibles</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Martes y Jueves</span>
+                            <span class="time">17:00 - 18:00 HRS</span>
+                            <span class="status warning">Últimos Cupos</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Sábados (Especial)</span>
+                            <span class="time">10:30 - 11:30 HRS</span>
+                            <span class="status">Cupos Disponibles</span>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de horarios (Junior Fitness) -->
+                    <div id="schedule-junior" class="schedule-content">
+                        <div class="schedule-row">
+                            <span class="day">Lunes y Miércoles</span>
+                            <span class="time">17:15 - 18:15 HRS</span>
+                            <span class="status">Cupos Disponibles</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Martes y Jueves</span>
+                            <span class="time">18:15 - 19:15 HRS</span>
+                            <span class="status full">Agotado</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Viernes (Técnica)</span>
+                            <span class="time">16:30 - 17:30 HRS</span>
+                            <span class="status">Cupos Disponibles</span>
+                        </div>
+                    </div>
+
+                    <div class="kids-card-footer">
+                        <a href="#contacto" class="btn btn-primary btn-kids">
+                            Reservar Clase de Prueba
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- COMUNIDAD -->
     <section class="community" id="comunidad" data-reveal>

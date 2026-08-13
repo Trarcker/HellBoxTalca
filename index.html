@@ -248,14 +248,35 @@
         </div>
     </footer>
 
-    <!-- ESTRUCTURA DEL MODAL EMERGENTE -->
+    <!-- ESTRUCTURA ACTUALIZADA DEL MODAL INTERACTIVO (TORRE + VISOR DERECHO) -->
     <div class="modal-overlay" id="equipModal">
-        <div class="modal-container">
+        <div class="modal-container layout-tower">
             <button class="modal-close" id="modalClose" aria-label="Cerrar">&times;</button>
-            <h2 class="modal-title" id="modalTitle">Categoría</h2>
             
-            <div class="modal-gallery" id="modalGallery">
-                <!-- Las imágenes y títulos de los ítems se renderizan aquí dinámicamente -->
+            <header class="modal-header">
+                <h2 class="modal-title" id="modalTitle">PESO LIBRE</h2>
+                <p class="modal-subtitle">Selecciona un elemento para ver sus imágenes</p>
+            </header>
+
+            <div class="modal-body">
+                <!-- COLUMNA IZQUIERDA: TORRE DE OPCIONES -->
+                <div class="tower-menu" id="towerMenu">
+                    <!-- Se renderiza dinámicamente desde JS -->
+                </div>
+
+                <!-- COLUMNA DERECHA: VISOR Y MINIATURAS DE FOTOS -->
+                <div class="display-viewer" id="displayViewer">
+                    <div class="viewer-header">
+                        <h3 id="viewerTitle">Cargando...</h3>
+                    </div>
+                    <div class="viewer-main-image">
+                        <img id="mainImage" src="" alt="Vista previa de equipamiento">
+                        <div class="image-overlay-glow"></div>
+                    </div>
+                    <div class="viewer-thumbnails" id="viewerThumbnails">
+                        <!-- Miniaturas dinámicas -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

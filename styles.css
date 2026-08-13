@@ -176,7 +176,7 @@ nav a:hover {
     transition: 0.3s;
 }
 
-/* --- HERO (CON IMAGEN DEL ATLETA AL FONDO) --- */
+/* --- HERO --- */
 .hero {
     position: relative;
     min-height: 100vh;
@@ -513,7 +513,7 @@ footer {
     padding-top: 20px;
 }
 
-/* --- MODAL DE EQUIPAMIENTO --- */
+/* --- MODAL Y LAYOUT DE TORRE (NUEVO) --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -536,19 +536,21 @@ footer {
     pointer-events: auto;
 }
 
-.modal-container {
+.modal-container.layout-tower {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    width: 90%;
-    max-width: 900px;
-    max-height: 85vh;
+    width: 92%;
+    max-width: 1050px;
+    max-height: 90vh;
     border-radius: 12px;
     padding: 30px;
     position: relative;
     overflow-y: auto;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-    transform: scale(0.9);
+    transform: scale(0.95);
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-overlay.active .modal-container {
@@ -566,51 +568,165 @@ footer {
     cursor: pointer;
     transition: color 0.3s;
     line-height: 1;
+    z-index: 10;
 }
 
 .modal-close:hover {
     color: var(--primary);
 }
 
+.modal-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
 .modal-title {
     font-size: 2rem;
     color: var(--primary);
-    margin-bottom: 25px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
+    line-height: 1.1;
 }
 
-.modal-gallery {
+.modal-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* CUERPO DEL MODAL EN DOS COLUMNAS */
+.modal-body {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: 280px 1fr;
+    gap: 25px;
+    align-items: start;
 }
 
-.modal-item {
+/* COLUMNA IZQUIERDA: TORRE DE OPCIONES */
+.tower-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 480px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.tower-item {
     background: #0d0d0d;
+    border: 1px solid var(--border-color);
+    padding: 14px 18px;
+    border-radius: 6px;
+    color: var(--text-light);
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.05rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tower-item:hover {
+    border-color: var(--primary);
+    background: rgba(229, 9, 20, 0.05);
+}
+
+.tower-item.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+}
+
+.tower-item::after {
+    content: '→';
+    font-family: sans-serif;
+    opacity: 0.5;
+    transition: transform 0.3s ease;
+}
+
+.tower-item.active::after,
+.tower-item:hover::after {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+/* COLUMNA DERECHA: VISOR DINÁMICO */
+.display-viewer {
+    background: #0d0d0d;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.viewer-header h3 {
+    color: var(--text-light);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.viewer-main-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: #000;
+    border-radius: 6px;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    transition: border-color 0.3s;
 }
 
-.modal-item:hover {
-    border-color: var(--primary);
-}
-
-.modal-item img {
+.viewer-main-image img {
     width: 100%;
-    height: 160px;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.image-overlay-glow {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    pointer-events: none;
+}
+
+/* MINIATURAS DE FOTOS */
+.viewer-thumbnails {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.thumb-item {
+    width: 70px;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.thumb-item img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-.modal-item p {
-    padding: 12px;
-    text-align: center;
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 1px;
-    font-size: 1rem;
-    color: var(--text-light);
+.thumb-item:hover {
+    opacity: 1;
+}
+
+.thumb-item.active {
+    border-color: var(--primary);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(229, 9, 20, 0.5);
 }
 
 /* --- MEDIA QUERIES --- */
@@ -650,6 +766,19 @@ footer {
 
     .nav-actions {
         display: none;
+    }
+
+    /* Ajuste responsivo del modal */
+    .modal-body {
+        grid-template-columns: 1fr;
+    }
+
+    .tower-menu {
+        max-height: 180px;
+    }
+
+    .viewer-main-image {
+        height: 240px;
     }
 }
 
@@ -694,7 +823,7 @@ footer {
         padding: 25px 15px;
     }
 
-    .modal-container {
+    .modal-container.layout-tower {
         padding: 20px 15px;
     }
 }

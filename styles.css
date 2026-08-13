@@ -374,54 +374,229 @@ section {
     font-size: 0.9rem;
 }
 
-/* --- KIDS --- */
+/* --- HELLBOX KIDS (INTERACTIVA & EFECTO LED) --- */
 .kids-section-wrapper {
-    padding: 0 6% 70px;
+    padding: 0 6% 80px;
 }
 
 .kids-section {
-    background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(10, 10, 10, 1) 100%);
-    border: 1px solid var(--primary);
-    border-radius: 12px;
-    padding: 40px 30px;
+    background: radial-gradient(circle at top right, rgba(229, 9, 20, 0.2), rgba(10, 10, 10, 0.98) 70%),
+                linear-gradient(135deg, #121212 0%, #080808 100%);
+    border: 1px solid rgba(229, 9, 20, 0.35);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(229, 9, 20, 0.08);
 }
 
 .kids-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
     align-items: center;
+}
+
+.badge-kids {
+    display: inline-block;
+    background: rgba(229, 9, 20, 0.15);
+    color: #e50914;
+    border: 1px solid #e50914;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
 }
 
 .kids-title {
-    font-size: 2.2rem;
-    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.2rem, 3.5vw, 3rem);
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 8px;
 }
 
 .kids-title span {
-    color: var(--primary);
+    color: #e50914;
+    text-shadow: 0 0 12px rgba(229, 9, 20, 0.6);
 }
 
 .kids-subtitle {
-    color: var(--text-muted);
-    margin-top: 5px;
-}
-
-.kids-list {
-    list-style: none;
-    margin-top: 15px;
-}
-
-.kids-list li {
+    color: #a0a0a0;
     font-size: 1rem;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* LISTA INTERACTIVA LED */
+.kids-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.kids-features li {
+    font-size: 0.95rem;
+    color: #dddddd;
     display: flex;
     align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px 16px;
+    border-radius: 10px;
+    border-left: 3px solid rgba(229, 9, 20, 0.4);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+}
+
+.kids-features li:hover {
+    transform: scale(1.04) translateX(6px);
+    background: rgba(229, 9, 20, 0.12);
+    border-left-color: #e50914;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.45), 
+                inset 0 0 10px rgba(229, 9, 20, 0.2);
+}
+
+.kids-icon {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.kids-features li:hover .kids-icon {
+    transform: scale(1.25) rotate(-5deg);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+/* TARJETA DE HORARIOS */
+.kids-interactive-card {
+    background: #0f0f0f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.schedule-header h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.age-selector {
+    display: flex;
+    gap: 8px;
+    background: #181818;
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 20px;
+}
+
+.age-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #888888;
+    padding: 10px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+}
+
+.age-btn span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin-top: 2px;
+    opacity: 0.8;
+}
+
+.age-btn:hover {
+    color: #ffffff;
+}
+
+.age-btn.active {
+    background: #e50914;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.6);
+}
+
+.schedule-content {
+    display: none;
+    flex-direction: column;
     gap: 10px;
 }
 
-.kids-action {
-    text-align: center;
+.schedule-content.active {
+    display: flex;
+    animation: fadeIn 0.35s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.schedule-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #161616;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.schedule-row .day {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #f0f0f0;
+}
+
+.schedule-row .time {
+    font-size: 0.85rem;
+    color: #e50914;
+    font-weight: 700;
+}
+
+.schedule-row .status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.schedule-row .status.warning {
+    background: rgba(241, 196, 15, 0.15);
+    color: #f1c40f;
+    border-color: #f1c40f;
+}
+
+.schedule-row .status.full {
+    background: rgba(231, 76, 60, 0.15);
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.kids-card-footer {
+    margin-top: 20px;
 }
 
 /* --- COMUNIDAD --- */
@@ -513,7 +688,7 @@ footer {
     padding-top: 20px;
 }
 
-/* --- MODAL Y LAYOUT DE TORRE (CORREGIDO Y REESTRUCTURADO) --- */
+/* --- MODAL Y LAYOUT DE TORRE --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -551,7 +726,7 @@ footer {
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Evita desbordamientos globales del contenedor */
+    overflow: hidden;
 }
 
 .modal-overlay.active .modal-container {
@@ -576,7 +751,6 @@ footer {
     color: var(--primary);
 }
 
-/* CABECERA AISLADA */
 .modal-header {
     margin-bottom: 20px;
     border-bottom: 1px solid var(--border-color);
@@ -600,17 +774,15 @@ footer {
     margin-top: 5px;
 }
 
-/* CUERPO DEL MODAL */
 .modal-body {
     display: grid;
     grid-template-columns: 320px 1fr;
     gap: 25px;
     align-items: start;
     flex-grow: 1;
-    min-height: 0; /* Necesario para que los scrollbars internos funcionen en Grid */
+    min-height: 0;
 }
 
-/* COLUMNA IZQUIERDA: TORRE DE OPCIONES */
 .tower-menu {
     display: flex;
     flex-direction: column;
@@ -668,7 +840,6 @@ footer {
     transform: translateX(4px);
 }
 
-/* COLUMNA DERECHA: VISOR DINÁMICO */
 .display-viewer {
     background: #0d0d0d;
     border: 1px solid var(--border-color);
@@ -712,7 +883,6 @@ footer {
     pointer-events: none;
 }
 
-/* MINIATURAS DE FOTOS */
 .viewer-thumbnails {
     display: flex;
     gap: 10px;
@@ -788,7 +958,10 @@ footer {
         display: none;
     }
 
-    /* Ajuste responsivo del modal */
+    .kids-container {
+        grid-template-columns: 1fr;
+    }
+
     .modal-container.layout-tower {
         max-height: 90vh;
         overflow-y: auto;
@@ -847,6 +1020,12 @@ footer {
 
     .kids-section {
         padding: 25px 15px;
+    }
+
+    .schedule-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
     }
 
     .modal-container.layout-tower {

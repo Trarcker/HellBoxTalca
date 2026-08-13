@@ -3,44 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HELLBOX TALCA | Fuerza, Disciplina y Resultados en el Infierno del Entrenamiento</title>
-    <!-- Incluimos fuentes de Google para un look profesional e industrial -->
+    <title>HELLBOX TALCA | Centro de Entrenamiento</title>
+    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- ESTILOS GENERALES Y VARIABLES --- */
+        /* --- VARIABLES Y RESET --- */
         :root {
-            --primary: #e50914; /* Rojo vibrante para acentos y botones */
-            --primary-hover: #ff1f1f; /* Rojo más brillante para hover */
-            --bg-dark: #0a0a0a; /* Fondo ultra oscuro */
-            --bg-card: #141414; /* Fondo de tarjetas */
-            --text-light: #ffffff; /* Texto blanco principal */
-            --text-muted: #a0a0a0; /* Texto gris para subtítulos */
-            --border-color: #262626; /* Color de bordes sutiles */
+            --primary: #e50914;
+            --primary-hover: #ff1f1f;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #262626;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif; /* Fuente base */
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
-            overflow-x: hidden; /* Evita scroll horizontal */
+            overflow-x: hidden;
         }
 
         h1, h2, h3, .nav-links a, .btn {
-            font-family: 'Oswald', sans-serif; /* Fuente para títulos y elementos de acción */
+            font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* --- EFECTO DINÁMICO: Scroll Revelado Sutil --- */
+        /* --- EFECTO REVELADO AL SCROLL --- */
         [data-reveal] {
             opacity: 0;
             transform: translateY(20px);
@@ -52,18 +52,18 @@
             transform: translateY(0);
         }
 
-        /* --- BARRA DE NAVEGACIÓN (NAVBAR) --- */
+        /* --- BARRA DE NAVEGACIÓN RESPONSIVA --- */
         header {
-            position: fixed; /* Mantiene la barra fija arriba */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
-            background: rgba(10, 10, 10, 0.9); /* Fondo semi-transparente */
-            backdrop-filter: blur(10px); /* Efecto de desenfoque detrás de la barra */
+            padding: 12px 6%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -71,50 +71,45 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             text-decoration: none;
         }
 
-        /* Imagen del logo integrada */
         .logo img {
-            height: 50px;
+            height: 45px;
             width: auto;
         }
 
-        /* Texto del logo dinámico */
-        .logo-text-wrapper {
-            display: flex;
-            flex-direction: column;
-        }
-
         .logo-main {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--text-light);
             transition: color 0.3s;
+            line-height: 1;
         }
 
         .logo-sub {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
+            display: block;
         }
 
-        /* Efecto hover en el logo */
         .logo:hover .logo-main {
             color: var(--primary);
         }
 
+        /* Menú Desktop */
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
         }
 
         nav a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
@@ -124,30 +119,29 @@
 
         .nav-actions {
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
 
         .btn {
-            padding: 10px 24px;
+            padding: 10px 20px;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 700;
             display: inline-block;
             transition: all 0.3s ease;
-            cursor: pointer;
             border: none;
+            text-align: center;
         }
 
         .btn-primary {
             background-color: var(--primary);
             color: var(--text-light);
-            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4); /* Resplandor sutil */
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
         }
 
         .btn-primary:hover {
             background-color: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(229, 9, 20, 0.6); /* Resplandor más fuerte en hover */
         }
 
         .btn-outline {
@@ -161,62 +155,79 @@
             transform: translateY(-2px);
         }
 
-        /* --- SECCIÓN HERO (PORTADA PRINCIPAL) --- */
+        /* Botón Hamburguesa Móvil */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 20px;
-            background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover no-repeat; /* Imagen de fondo de alta calidad */
+            padding: 120px 20px 60px;
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), 
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover no-repeat;
         }
 
         .hero-content {
-            max-width: 900px;
-            margin-top: 60px; /* Espacio para la navbar */
+            max-width: 850px;
+            width: 100%;
         }
 
         .hero-subtitle {
             color: var(--text-muted);
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             letter-spacing: 3px;
             margin-bottom: 10px;
-            font-family: 'Oswald', sans-serif;
         }
 
         .hero-title {
-            font-size: 5rem;
+            font-size: clamp(2.8rem, 8vw, 5rem);
             font-weight: 700;
-            line-height: 1;
+            line-height: 1.05;
             color: var(--text-light);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        /* Efecto de resplandor neón en el título principal */
         .hero-title span {
             color: var(--primary);
             text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
         }
 
         .hero-tagline {
-            font-size: 1.8rem;
+            font-size: clamp(1.1rem, 4vw, 1.8rem);
             font-weight: 700;
             margin-bottom: 30px;
         }
 
         .hero-btns {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
-        /* Info de horarios y bienvenida al pie del Hero */
         .hero-footer-info {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             max-width: 800px;
             margin: 0 auto;
             text-align: left;
@@ -233,16 +244,16 @@
 
         /* --- SECCIONES COMUNES --- */
         section {
-            padding: 90px 8%;
+            padding: 70px 6%;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 45px;
         }
 
         .section-title {
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 5vw, 2.8rem);
             color: var(--text-light);
             margin-bottom: 10px;
         }
@@ -255,33 +266,32 @@
             color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
-        /* --- SECCIÓN EQUIPAMIENTO (TARJETAS DINÁMICAS) --- */
+        /* --- EQUIPAMIENTO --- */
         .equipement-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
 
         .equip-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 30px;
+            padding: 25px;
             border-radius: 8px;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
-        /* Efecto hover dinámico en tarjetas */
         .equip-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         .equip-card h3 {
             color: var(--primary);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 15px;
         }
 
@@ -293,17 +303,14 @@
             color: var(--text-muted);
             padding: 6px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
         }
 
-        .equip-card li:last-child {
-            border-bottom: none;
-        }
-
-        /* --- SECCIÓN SERVICIOS (TARJETAS DE DISCIPLINA) --- */
+        /* --- SERVICIOS --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .service-card {
@@ -312,7 +319,6 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: all 0.3s;
-            cursor: pointer;
         }
 
         .service-card:hover {
@@ -320,50 +326,72 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        /* Imagen de fondo en cada tarjeta de servicio */
         .service-image {
-            height: 180px;
-            width: 100%;
+            height: 160px;
             background-size: cover;
             background-position: center;
         }
 
         .service-content {
-            padding: 25px;
+            padding: 20px;
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
         }
 
         .service-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        /* --- SECCIÓN COMUNIDAD (GALERÍA INTERACTIVA) --- */
+        /* --- SECCIÓN HELLBOX KIDS --- */
+        .kids-section {
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(10, 10, 10, 1) 100%);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            margin: 0 6% 70px 6%;
+            padding: 40px 30px;
+        }
+
+        .kids-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .kids-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .kids-list li {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- COMUNIDAD GALERÍA --- */
         .community {
             background-color: var(--bg-card);
         }
 
-        /* Galería estilo "Masonry" para dinamismo visual */
         .community-gallery {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
-            grid-auto-rows: 200px; /* Altura base para las filas */
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 8px;
+            height: 200px;
         }
-
-        /* Hace que ciertas imágenes ocupen más espacio para un look dinámico */
-        .gallery-item.v-stretch { grid-row: span 2; }
-        .gallery-item.h-stretch { grid-column: span 2; }
 
         .gallery-item img {
             width: 100%;
@@ -372,25 +400,22 @@
             transition: transform 0.5s;
         }
 
-        /* Efecto zoom suave en hover */
         .gallery-item:hover img {
             transform: scale(1.1);
         }
 
-        /* Superposición de texto en hover */
         .gallery-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(229, 9, 20, 0.8);
-            color: var(--text-light);
+            background: rgba(229, 9, 20, 0.85);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -399,16 +424,10 @@
             opacity: 1;
         }
 
-        .gallery-overlay h4 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
-
-        /* --- PIE DE PÁGINA (FOOTER) --- */
+        /* --- FOOTER --- */
         footer {
-            background: #050505; /* Footer ultra oscuro */
-            padding: 60px 8% 20px;
+            background: #050505;
+            padding: 50px 6% 20px;
             border-top: 1px solid var(--border-color);
         }
 
@@ -416,16 +435,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap; /* Adaptabilidad */
+            margin-bottom: 30px;
+            flex-wrap: wrap;
             gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
         }
 
         .social-links a {
             color: var(--text-muted);
-            margin-left: 20px;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: color 0.3s;
         }
 
@@ -441,46 +464,97 @@
             padding-top: 20px;
         }
 
-        /* --- MEDIA QUERIES (ADAPTABILIDAD MÓVIL) --- */
-        @media (max-width: 768px) {
-            header { padding: 10px 4%; }
-            .logo img { height: 40px; }
-            .logo-main { font-size: 1.5rem; }
-            .hero-title { font-size: 3.5rem; }
-            .hero-tagline { font-size: 1.3rem; }
-            nav ul { display: none; } /* Ocultamos nav para móvil por ahora */
-            .hero-footer-info { flex-direction: column; gap: 15px; }
-            .community-gallery { grid-template-columns: repeat(2, 1fr); }
-            .gallery-item.h-stretch { grid-column: span 1; }
+        /* --- REGLAS MÓVILES (RESPONSIVE BREAKPOINTS) --- */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(15px);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.4s ease;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            nav a {
+                font-size: 1.5rem;
+            }
+
+            .nav-actions {
+                display: none; /* Oculta botones secundarios en header móvil */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-btns {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-btns .btn {
+                width: 100%;
+            }
+
+            .kids-section {
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- --- BARRA DE NAVEGACIÓN --- -->
+    <!-- NAV BAR -->
     <header>
         <a href="#" class="logo">
-            <!-- REEMPLAZA 'logo.png' CON LA RUTA A TU ARCHIVO DE LOGO -->
-            <img src="logo.png" alt="HELLBOX TALCA Logo">
-            <div class="logo-text-wrapper">
+            <img src="logo.png" alt="HELLBOX Logo">
+            <div>
                 <span class="logo-main">HELLBOX</span>
                 <span class="logo-sub">TALCA</span>
             </div>
         </a>
-        <nav>
+
+        <!-- Botón Menú Móvil -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-list">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#equipamiento">Equipamiento</a></li>
-                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#servicios">Clases</a></li>
+                <li><a href="#kids">Kids</a></li>
                 <li><a href="#comunidad">Comunidad</a></li>
             </ul>
         </nav>
+
         <div class="nav-actions">
-            <a href="#contacto" class="btn btn-primary">CONTACTANOS</a>
+            <a href="#contacto" class="btn btn-primary">CONTACTO</a>
         </div>
     </header>
 
-    <!-- --- SECCIÓN HERO PRINCIPAL --- -->
+    <!-- HERO -->
     <section class="hero" id="home">
         <div class="hero-content">
             <p class="hero-subtitle">FUERZA | DISCIPLINA | RESULTADOS</p>
@@ -488,7 +562,7 @@
             <p class="hero-tagline">¡ÚNETE AL INFIERNO DEL ENTRENAMIENTO!</p>
             <div class="hero-btns">
                 <a href="#servicios" class="btn btn-primary">EMPIEZA HOY</a>
-                <a href="#equipamiento" class="btn btn-outline">CONOCE MÁS</a>
+                <a href="#equipamiento" class="btn btn-outline">NUESTROS PLANES</a>
             </div>
             
             <div class="hero-footer-info">
@@ -504,11 +578,11 @@
         </div>
     </section>
 
-    <!-- --- SECCIÓN EQUIPAMIENTO --- -->
+    <!-- EQUIPAMIENTO -->
     <section id="equipamiento" data-reveal>
         <div class="section-header">
             <h2 class="section-title">NUESTRO <span>EQUIPAMIENTO</span></h2>
-            <p class="section-desc">Instalaciones de primer nivel categorizadas para optimizar cada fase de tu rutina.</p>
+            <p class="section-desc">Instalaciones de primer nivel categorizadas para optimizar tu rutina.</p>
         </div>
         <div class="equipement-grid">
             <div class="equip-card">
@@ -524,8 +598,9 @@
                 <h3>MUSCULACIÓN</h3>
                 <ul>
                     <li>Máquinas Especializadas</li>
-                    <li>Poleas</li>
-                    <li>Prensa y Extensiones</li>
+                    <li>Sistemas de Poleas</li>
+                    <li>Prensa 45°</li>
+                    <li>Extensiones</li>
                 </ul>
             </div>
             <div class="equip-card">
@@ -539,15 +614,15 @@
             <div class="equip-card">
                 <h3>FUNCIONAL</h3>
                 <ul>
-                    <li>Espacio Funcional</li>
-                    <li>Accesorios</li>
+                    <li>Espacio Abierto</li>
+                    <li>Kettlebells</li>
                     <li>Entrenamiento Dinámico</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- --- SECCIÓN SERVICIOS --- -->
+    <!-- SERVICIOS / CLASES -->
     <section id="servicios" style="background-color: #0d0d0d;" data-reveal>
         <div class="section-header">
             <h2 class="section-title">ENTRENA A TU <span>MANERA</span></h2>
@@ -555,7 +630,6 @@
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <!-- Imagenes de ejemplo, reemplázalas por las tuyas -->
                 <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600');"></div>
                 <div class="service-content">
                     <h3>MUSCULACIÓN</h3>
@@ -566,70 +640,87 @@
                 <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600');"></div>
                 <div class="service-content">
                     <h3>FUNCIONAL</h3>
-                    <p>Mejora tu fuerza, resistencia, movilidad y condición física general en sesiones dinámicas.</p>
+                    <p>Mejora tu fuerza, resistencia, movilidad y condición física general.</p>
                 </div>
             </div>
             <div class="service-card">
-                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600');"></div>
+                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600');"></div>
                 <div class="service-content">
                     <h3>CROSSFIT</h3>
-                    <p>Entrenamientos de alta intensidad diseñados para desafiar tus límites dentro de la comunidad.</p>
+                    <p>Entrenamientos de alta intensidad diseñados para desafiar tus límites.</p>
                 </div>
             </div>
             <div class="service-card">
                 <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef03a726ec?q=80&w=600');"></div>
                 <div class="service-content">
                     <h3>PERSONAL TRAINING</h3>
-                    <p>Acompañamiento personalizado 1 a 1 adaptado exclusivamente a tus objetivos particulares.</p>
+                    <p>Acompañamiento personalizado 1 a 1 adaptado a tus objetivos particulares.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- --- SECCIÓN COMUNIDAD --- -->
+    <!-- HELLBOX KIDS -->
+    <div class="kids-section" id="kids" data-reveal>
+        <div class="kids-container">
+            <div>
+                <h2 style="font-size: 2.2rem; color: #fff;">HELLBOX <span style="color: var(--primary);">KIDS</span></h2>
+                <p style="color: var(--text-muted); margin-top: 5px;">Movimiento, juego y desarrollo desde pequeños.</p>
+                <ul class="kids-list">
+                    <li>🏃 Desarrollo de habilidades motoras</li>
+                    <li>🤸 Coordinación y equilibrio</li>
+                    <li>🧠 Estimulación mediante el movimiento</li>
+                    <li>💪 Fuerza y control corporal</li>
+                    <li>👶 Actividades adaptadas según la edad</li>
+                    <li>👥 Espacio seguro y guiado</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <a href="#contacto" class="btn btn-primary" style="width: 100%; max-width: 300px;">HORARIOS KIDS</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMUNIDAD GALERÍA -->
     <section class="community" id="comunidad" data-reveal>
         <div class="section-header">
             <h2 class="section-title">NO ENTRENAS <span>SOLO</span></h2>
-            <p class="section-desc">Hellbox es una comunidad formada por personas con distintos objetivos, pero con algo en común: querer ser mejores que ayer.</p>
+            <p class="section-desc">Hellbox es una comunidad de personas unidas para ser mejores que ayer.</p>
         </div>
         
         <div class="community-gallery">
-            <div class="gallery-item h-stretch">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 1">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600" alt="Entrenamientos">
                 <div class="gallery-overlay"><h4>Entrenamientos Grupales</h4></div>
             </div>
-            <div class="gallery-item v-stretch">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 2">
-                <div class="gallery-overlay"><h4>Cumpleaños y Celebraciones</h4></div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600" alt="Competencias">
+                <div class="gallery-overlay"><h4>Competencias</h4></div>
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 3">
-                <div class="gallery-overlay"><h4>Competencias Inter-Box</h4></div>
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600" alt="Celebraciones">
+                <div class="gallery-overlay"><h4>Eventos & Cumpleaños</h4></div>
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 4">
-                <div class="gallery-overlay"><h4>Eventos Especiales</h4></div>
-            </div>
-            <div class="gallery-item h-stretch">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Comunidad Hellbox 5">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef03a726ec?q=80&w=600" alt="Compañerismo">
                 <div class="gallery-overlay"><h4>Compañerismo</h4></div>
             </div>
         </div>
     </section>
 
-    <!-- --- PIE DE PÁGINA --- -->
+    <!-- FOOTER -->
     <footer id="contacto">
         <div class="footer-content">
             <a href="#" class="logo">
-                <img src="logo.png" alt="HELLBOX TALCA Logo">
-                <div class="logo-text-wrapper">
+                <img src="logo.png" alt="HELLBOX Logo">
+                <div>
                     <span class="logo-main">HELLBOX</span>
                     <span class="logo-sub">TALCA</span>
                 </div>
             </a>
             <div>
-                <p>Ubicación: Calle Ejemplo #123, Talca, Chile.</p>
-                <p>Contacto: contacto@hellboxtalca.cl | +56 9 1234 5678</p>
+                <p>Ubicación: Talca, Chile</p>
+                <p>Contacto: contacto@hellboxtalca.cl</p>
             </div>
             <div class="social-links">
                 <a href="#">Instagram</a>
@@ -641,22 +732,34 @@
         </div>
     </footer>
 
-    <!-- --- JAVASCRIPT DINÁMICO --- -->
+    <!-- JAVASCRIPT: Menú Móvil y Scroll Revelado -->
     <script>
-        // --- EFECTO DE REVELADO AL HACER SCROLL ---
+        // Toggle Menú Móvil
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Cerrar menú móvil al presionar un enlace
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // Revelado Dinámico al Scroll
         const revealElements = document.querySelectorAll('[data-reveal]');
 
         const reveal = function () {
-            for (let i = 0, len = revealElements.length; i < len; i++) {
+            for (let i = 0; i < revealElements.length; i++) {
                 if (revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.15) {
                     revealElements[i].classList.add('active');
-                } else {
-                    revealElements[i].classList.remove('active');
                 }
             }
         }
 
-        // Ejecutar al cargar la página y al hacer scroll
         window.addEventListener('scroll', reveal);
         window.addEventListener('load', reveal);
     </script>

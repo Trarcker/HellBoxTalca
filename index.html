@@ -55,7 +55,7 @@
         </div>
     </header>
 
-    <!-- PORTADA PRINCIPAL (HERO ACTUALIZADO) -->
+    <!-- PORTADA PRINCIPAL (HERO) -->
     <section class="hero" id="home">
         <div class="hero-content">
             <p class="hero-subtitle">FITNESS ZONE TALCA</p>
@@ -80,14 +80,14 @@
         </div>
     </section>
 
-    <!-- EQUIPAMIENTO -->
+    <!-- EQUIPAMIENTO ACTUALIZADO CON EVENTO DE CLIC -->
     <section id="equipamiento" data-reveal>
         <div class="section-header">
             <h2 class="section-title">NUESTRO <span>EQUIPAMIENTO</span></h2>
-            <p class="section-desc">Instalaciones de primer nivel categorizadas para optimizar tu rutina al máximo.</p>
+            <p class="section-desc">Haz clic en cualquier categoría para ver fotos y detalles del equipamiento.</p>
         </div>
         <div class="equipement-grid">
-            <div class="equip-card">
+            <div class="equip-card" data-category="peso-libre">
                 <h3>PESO LIBRE</h3>
                 <ul>
                     <li>Barras Olímpicas</li>
@@ -95,8 +95,9 @@
                     <li>Mancuernas de Alto Gramaje</li>
                     <li>Bancos y Racks</li>
                 </ul>
+                <span class="click-hint">Ver Galería &rarr;</span>
             </div>
-            <div class="equip-card">
+            <div class="equip-card" data-category="musculacion">
                 <h3>MUSCULACIÓN</h3>
                 <ul>
                     <li>Máquinas Especializadas</li>
@@ -104,22 +105,25 @@
                     <li>Prensa 45°</li>
                     <li>Extensiones & Femoral</li>
                 </ul>
+                <span class="click-hint">Ver Galería &rarr;</span>
             </div>
-            <div class="equip-card">
+            <div class="equip-card" data-category="cardio">
                 <h3>CARDIO</h3>
                 <ul>
                     <li>Caminadoras Profesionales</li>
                     <li>Bicicletas Spinning</li>
                     <li>Elípticas</li>
                 </ul>
+                <span class="click-hint">Ver Galería &rarr;</span>
             </div>
-            <div class="equip-card">
+            <div class="equip-card" data-category="funcional">
                 <h3>FUNCIONAL</h3>
                 <ul>
                     <li>Espacio Abierto</li>
                     <li>Kettlebells & Accesorios</li>
                     <li>Entrenamiento Dinámico</li>
                 </ul>
+                <span class="click-hint">Ver Galería &rarr;</span>
             </div>
         </div>
     </section>
@@ -243,6 +247,18 @@
             <p>&copy; 2026 HELLBOX TALCA. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- ESTRUCTURA DEL MODAL EMERGENTE -->
+    <div class="modal-overlay" id="equipModal">
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose" aria-label="Cerrar">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Categoría</h2>
+            
+            <div class="modal-gallery" id="modalGallery">
+                <!-- Las imágenes y títulos de los ítems se renderizan aquí dinámicamente -->
+            </div>
+        </div>
+    </div>
 
     <!-- Lógica JavaScript Externa -->
     <script src="script.js"></script>

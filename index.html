@@ -8,536 +8,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        /* --- VARIABLES Y RESET --- */
-        :root {
-            --primary: #e50914;
-            --primary-hover: #ff1f1f;
-            --bg-dark: #0a0a0a;
-            --bg-card: #141414;
-            --text-light: #ffffff;
-            --text-muted: #a0a0a0;
-            --border-color: #262626;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .nav-links a, .btn {
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- EFECTO REVELADO AL SCROLL --- */
-        [data-reveal] {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        [data-reveal].active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- BARRA DE NAVEGACIÓN RESPONSIVA --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 6%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 45px;
-            width: auto;
-        }
-
-        .logo-main {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--text-light);
-            transition: color 0.3s;
-            line-height: 1;
-        }
-
-        .logo-sub {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 3px;
-            display: block;
-        }
-
-        .logo:hover .logo-main {
-            color: var(--primary);
-        }
-
-        /* Menú Desktop */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: all 0.3s ease;
-            border: none;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--text-light);
-            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--text-light);
-            background: transparent;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* Botón Hamburguesa Móvil */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 28px;
-            height: 3px;
-            background: var(--text-light);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 20px 60px;
-            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), 
-                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover no-repeat;
-        }
-
-        .hero-content {
-            max-width: 850px;
-            width: 100%;
-        }
-
-        .hero-subtitle {
-            color: var(--text-muted);
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
-
-        .hero-title {
-            font-size: clamp(2.8rem, 8vw, 5rem);
-            font-weight: 700;
-            line-height: 1.05;
-            color: var(--text-light);
-            margin-bottom: 15px;
-        }
-
-        .hero-title span {
-            color: var(--primary);
-            text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
-        }
-
-        .hero-tagline {
-            font-size: clamp(1.1rem, 4vw, 1.8rem);
-            font-weight: 700;
-            margin-bottom: 30px;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .hero-footer-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        .info-block h4 {
-            color: var(--primary);
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        /* --- SECCIONES COMUNES --- */
-        section {
-            padding: 70px 6%;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 2.8rem);
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .section-title span {
-            color: var(--primary);
-        }
-
-        .section-desc {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
-
-        /* --- EQUIPAMIENTO --- */
-        .equipement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .equip-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: 8px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .equip-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .equip-card h3 {
-            color: var(--primary);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-
-        .equip-card ul {
-            list-style: none;
-        }
-
-        .equip-card li {
-            color: var(--text-muted);
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.95rem;
-        }
-
-        /* --- SERVICIOS --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        .service-image {
-            height: 160px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .service-content {
-            padding: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* --- SECCIÓN HELLBOX KIDS --- */
-        .kids-section {
-            background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(10, 10, 10, 1) 100%);
-            border: 1px solid var(--primary);
-            border-radius: 12px;
-            margin: 0 6% 70px 6%;
-            padding: 40px 30px;
-        }
-
-        .kids-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            align-items: center;
-        }
-
-        .kids-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .kids-list li {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* --- COMUNIDAD GALERÍA --- */
-        .community {
-            background-color: var(--bg-card);
-        }
-
-        .community-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 200px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(229, 9, 20, 0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 15px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #050505;
-            padding: 50px 6% 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
-        }
-
-        /* --- REGLAS MÓVILES (RESPONSIVE BREAKPOINTS) --- */
-        @media (max-width: 900px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(10, 10, 10, 0.98);
-                backdrop-filter: blur(15px);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: 0.4s ease;
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 30px;
-                text-align: center;
-            }
-
-            nav a {
-                font-size: 1.5rem;
-            }
-
-            .nav-actions {
-                display: none; /* Oculta botones secundarios en header móvil */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-btns {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .hero-btns .btn {
-                width: 100%;
-            }
-
-            .kids-section {
-                padding: 25px 15px;
-            }
-        }
-    </style>
+    <!-- Estilos Externos -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- NAV BAR -->
+    <!-- BARRA DE NAVEGACIÓN -->
     <header>
         <a href="#" class="logo">
-            <img src="logo.png" alt="HELLBOX Logo">
-            <div>
+            <!-- Logo SVG circular que emula tu imagen -->
+            <div class="logo-icon-container">
+                <svg viewBox="0 0 100 100" class="logo-svg">
+                    <circle cx="50" cy="50" r="48" fill="#e50914" />
+                    <!-- Silueta Demonio / Pesas -->
+                    <path d="M50 22 C48 15 38 10 38 10 C38 10 42 22 46 28 C42 32 36 38 36 45 C36 50 40 55 45 58 L45 65 L55 65 L55 58 C60 55 64 50 64 45 C64 38 58 32 54 28 C58 22 62 10 62 10 C62 10 52 15 50 22 Z" fill="#0a0a0a" />
+                    <rect x="20" y="50" width="60" height="4" fill="#0a0a0a" />
+                    <rect x="16" y="44" width="6" height="16" rx="2" fill="#0a0a0a" />
+                    <rect x="78" y="44" width="6" height="16" rx="2" fill="#0a0a0a" />
+                </svg>
+            </div>
+            <div class="logo-text">
                 <span class="logo-main">HELLBOX</span>
                 <span class="logo-sub">TALCA</span>
             </div>
         </a>
 
-        <!-- Botón Menú Móvil -->
-        <div class="menu-toggle" id="mobile-menu">
+        <!-- Botón Menú Hamburguesa Móvil -->
+        <button class="menu-toggle" id="mobile-menu" aria-label="Abrir Menú">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
 
         <nav id="nav-list">
             <ul>
@@ -554,7 +55,7 @@
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- PORTADA PRINCIPAL (HERO) -->
     <section class="hero" id="home">
         <div class="hero-content">
             <p class="hero-subtitle">FUERZA | DISCIPLINA | RESULTADOS</p>
@@ -582,7 +83,7 @@
     <section id="equipamiento" data-reveal>
         <div class="section-header">
             <h2 class="section-title">NUESTRO <span>EQUIPAMIENTO</span></h2>
-            <p class="section-desc">Instalaciones de primer nivel categorizadas para optimizar tu rutina.</p>
+            <p class="section-desc">Instalaciones de primer nivel categorizadas para optimizar tu rutina al máximo.</p>
         </div>
         <div class="equipement-grid">
             <div class="equip-card">
@@ -590,7 +91,7 @@
                 <ul>
                     <li>Barras Olímpicas</li>
                     <li>Discos Bumper</li>
-                    <li>Mancuernas</li>
+                    <li>Mancuernas de Alto Gramaje</li>
                     <li>Bancos y Racks</li>
                 </ul>
             </div>
@@ -600,14 +101,14 @@
                     <li>Máquinas Especializadas</li>
                     <li>Sistemas de Poleas</li>
                     <li>Prensa 45°</li>
-                    <li>Extensiones</li>
+                    <li>Extensiones & Femoral</li>
                 </ul>
             </div>
             <div class="equip-card">
                 <h3>CARDIO</h3>
                 <ul>
-                    <li>Caminadoras</li>
-                    <li>Bicicletas Spining</li>
+                    <li>Caminadoras Profesionales</li>
+                    <li>Bicicletas Spinning</li>
                     <li>Elípticas</li>
                 </ul>
             </div>
@@ -615,77 +116,79 @@
                 <h3>FUNCIONAL</h3>
                 <ul>
                     <li>Espacio Abierto</li>
-                    <li>Kettlebells</li>
+                    <li>Kettlebells & Accesorios</li>
                     <li>Entrenamiento Dinámico</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- SERVICIOS / CLASES -->
-    <section id="servicios" style="background-color: #0d0d0d;" data-reveal>
+    <!-- CLASES Y SERVICIOS -->
+    <section id="servicios" class="bg-darker" data-reveal>
         <div class="section-header">
             <h2 class="section-title">ENTRENA A TU <span>MANERA</span></h2>
-            <p class="section-desc">Selecciona la disciplina que mejor se adapte a tus metas.</p>
+            <p class="section-desc">Cada disciplina cuenta con su espacio y metodología adaptada.</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600');"></div>
                 <div class="service-content">
                     <h3>MUSCULACIÓN</h3>
-                    <p>Construye fuerza y masa muscular con programas focalizados y asesoría constante.</p>
+                    <p>Construye fuerza y masa muscular con programas focalizados y guía técnica constante.</p>
                 </div>
             </div>
             <div class="service-card">
                 <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600');"></div>
                 <div class="service-content">
                     <h3>FUNCIONAL</h3>
-                    <p>Mejora tu fuerza, resistencia, movilidad y condición física general.</p>
+                    <p>Mejora tu fuerza, resistencia, movilidad y condición física general en sesiones dinámicas.</p>
                 </div>
             </div>
             <div class="service-card">
                 <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600');"></div>
                 <div class="service-content">
                     <h3>CROSSFIT</h3>
-                    <p>Entrenamientos de alta intensidad diseñados para desafiar tus límites.</p>
+                    <p>Entrenamientos de alta intensidad diseñados para desafiar tus límites dentro de la comunidad.</p>
                 </div>
             </div>
             <div class="service-card">
                 <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef03a726ec?q=80&w=600');"></div>
                 <div class="service-content">
                     <h3>PERSONAL TRAINING</h3>
-                    <p>Acompañamiento personalizado 1 a 1 adaptado a tus objetivos particulares.</p>
+                    <p>Acompañamiento personalizado 1 a 1 adaptado exclusivamente a tus objetivos particulares.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- HELLBOX KIDS -->
-    <div class="kids-section" id="kids" data-reveal>
-        <div class="kids-container">
-            <div>
-                <h2 style="font-size: 2.2rem; color: #fff;">HELLBOX <span style="color: var(--primary);">KIDS</span></h2>
-                <p style="color: var(--text-muted); margin-top: 5px;">Movimiento, juego y desarrollo desde pequeños.</p>
-                <ul class="kids-list">
-                    <li>🏃 Desarrollo de habilidades motoras</li>
-                    <li>🤸 Coordinación y equilibrio</li>
-                    <li>🧠 Estimulación mediante el movimiento</li>
-                    <li>💪 Fuerza y control corporal</li>
-                    <li>👶 Actividades adaptadas según la edad</li>
-                    <li>👥 Espacio seguro y guiado</li>
-                </ul>
-            </div>
-            <div style="text-align: center;">
-                <a href="#contacto" class="btn btn-primary" style="width: 100%; max-width: 300px;">HORARIOS KIDS</a>
+    <div class="kids-section-wrapper" data-reveal>
+        <div class="kids-section" id="kids">
+            <div class="kids-container">
+                <div>
+                    <h2 class="kids-title">HELLBOX <span>KIDS</span></h2>
+                    <p class="kids-subtitle">Movimiento, juego y desarrollo desde pequeños.</p>
+                    <ul class="kids-list">
+                        <li>🏃 Desarrollo de habilidades motoras</li>
+                        <li>🤸 Coordinación y equilibrio</li>
+                        <li>🧠 Estimulación mediante el movimiento</li>
+                        <li>💪 Fuerza y control corporal</li>
+                        <li>👶 Actividades adaptadas según la edad</li>
+                        <li>👥 Espacio seguro y guiado</li>
+                    </ul>
+                </div>
+                <div class="kids-action">
+                    <a href="#contacto" class="btn btn-primary">HORARIOS KIDS</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- COMUNIDAD GALERÍA -->
+    <!-- COMUNIDAD -->
     <section class="community" id="comunidad" data-reveal>
         <div class="section-header">
             <h2 class="section-title">NO ENTRENAS <span>SOLO</span></h2>
-            <p class="section-desc">Hellbox es una comunidad de personas unidas para ser mejores que ayer.</p>
+            <p class="section-desc">Hellbox es una comunidad formada por personas con distintos objetivos, pero unidas para ser mejores que ayer.</p>
         </div>
         
         <div class="community-gallery">
@@ -712,13 +215,21 @@
     <footer id="contacto">
         <div class="footer-content">
             <a href="#" class="logo">
-                <img src="logo.png" alt="HELLBOX Logo">
-                <div>
+                <div class="logo-icon-container">
+                    <svg viewBox="0 0 100 100" class="logo-svg">
+                        <circle cx="50" cy="50" r="48" fill="#e50914" />
+                        <path d="M50 22 C48 15 38 10 38 10 C38 10 42 22 46 28 C42 32 36 38 36 45 C36 50 40 55 45 58 L45 65 L55 65 L55 58 C60 55 64 50 64 45 C64 38 58 32 54 28 C58 22 62 10 62 10 C62 10 52 15 50 22 Z" fill="#0a0a0a" />
+                        <rect x="20" y="50" width="60" height="4" fill="#0a0a0a" />
+                        <rect x="16" y="44" width="6" height="16" rx="2" fill="#0a0a0a" />
+                        <rect x="78" y="44" width="6" height="16" rx="2" fill="#0a0a0a" />
+                    </svg>
+                </div>
+                <div class="logo-text">
                     <span class="logo-main">HELLBOX</span>
                     <span class="logo-sub">TALCA</span>
                 </div>
             </a>
-            <div>
+            <div class="footer-info">
                 <p>Ubicación: Talca, Chile</p>
                 <p>Contacto: contacto@hellboxtalca.cl</p>
             </div>
@@ -732,36 +243,7 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT: Menú Móvil y Scroll Revelado -->
-    <script>
-        // Toggle Menú Móvil
-        const menuToggle = document.getElementById('mobile-menu');
-        const navList = document.getElementById('nav-list');
-
-        menuToggle.addEventListener('click', () => {
-            navList.classList.toggle('active');
-        });
-
-        // Cerrar menú móvil al presionar un enlace
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
-        });
-
-        // Revelado Dinámico al Scroll
-        const revealElements = document.querySelectorAll('[data-reveal]');
-
-        const reveal = function () {
-            for (let i = 0; i < revealElements.length; i++) {
-                if (revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.15) {
-                    revealElements[i].classList.add('active');
-                }
-            }
-        }
-
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('load', reveal);
-    </script>
+    <!-- Lógica JavaScript Externa -->
+    <script src="script.js"></script>
 </body>
 </html>
